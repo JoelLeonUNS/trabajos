@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:AppExamen": "node dist/app-examen/server/server.mjs"
+    "serve:ssr:app-examen": "node dist/app-examen/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +22,6 @@
     "@angular/router": "^17.3.0",
     "@angular/ssr": "^17.3.1",
     "@npmcli/package-json": "^5.2.0",
-    "angular-cli-ghpages": "^2.0.1",
     "express": "^4.18.2",
     "ng-zorro-antd": "^17.4.1",
     "rxjs": "~7.8.0",
