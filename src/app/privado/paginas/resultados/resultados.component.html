@@ -1,0 +1,70 @@
+@if (respuestas.length > 0) {
+  <nz-alert
+  [nzType]="tipo"
+  nzMessage="Puntaje Total"
+  [nzDescription]="descripcion"
+  nzShowIcon
+  style="margin-bottom: 1em;"
+></nz-alert>
+}
+<Form
+  nz-form
+  [formGroup]="modalForm"
+  [nzLayout]="'vertical'"
+  style="padding: 3em; overflow-y: auto; height: 85%"
+>
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="10">
+      <app-input
+        [label]="'Nombre'"
+        [controlName]="'nombre'"
+        [gender]="'M'"
+      ></app-input>
+    </div>
+    <div nz-col [nzSpan]="10">
+      <app-input
+        [label]="'Apellido'"
+        [controlName]="'apellido'"
+        [gender]="'M'"
+      ></app-input>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <app-input
+        [label]="'Fecha'"
+        [controlName]="'fecha'"
+        [gender]="'F'"
+      ></app-input>
+    </div>
+  </div>
+  <nz-divider></nz-divider>
+  <h2>Respuestas Marcadas</h2>
+  @for ( pregunta of preguntas; let i = $index; track pregunta.id ) {
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="24">
+      <app-radio-group-front
+        [label]="pregunta.texto"
+        [controlName]="'p_' + pregunta.id"
+        [gender]="'F'"
+        [options]="pregunta.alternativas"
+      />
+      @if (respuestas.length > 0) {
+        @if (pregunta.alternativas[respuestas[i].alternativa_id! - 1].correcta) {
+          <nz-alert
+            [nzType]="'success'"
+            nzMessage="Correcto"
+            nzShowIcon
+            style="margin-bottom: 1em;"
+          ></nz-alert>
+        } @else { 
+        <nz-alert
+          [nzType]="'error'"
+          nzMessage="Incorrecto"
+          nzShowIcon
+          style="margin-bottom: 1em;"
+        ></nz-alert>
+        }
+      }
+    </div>
+  </div>
+  }
+</Form>
